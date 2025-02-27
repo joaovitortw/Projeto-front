@@ -1,0 +1,29 @@
+.estoquePage{
+margin: 0;
+background-color: #CDD7E9;
+width: 100%;
+height: 20vh;
+}
+
+.pageEstoque{
+    background-color: black;
+    width: 100%;
+    height: 77vh;
+}
+
+.containerEstoque{
+    text-align: center;
+
+    justify-content: center;
+
+    
+}
+
+.containerCards{
+
+background-color: red;
+width: 80%;
+height: 40vh;
+
+z-index: 1;
+}

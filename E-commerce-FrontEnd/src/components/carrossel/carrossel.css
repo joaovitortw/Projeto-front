@@ -1,0 +1,26 @@
+/* src/Carrossel.css */
+.carrossel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .carrossel img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin: 0 10px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
