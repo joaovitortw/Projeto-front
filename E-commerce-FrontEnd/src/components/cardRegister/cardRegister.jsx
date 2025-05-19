@@ -3,12 +3,11 @@ import './cardRegister.css';
 import api from '../../api';
 
 const CardRegisterModal = ({ isOpen, onClose }) => {
-  const [username, setUsername] = useState(''); 
-  const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [message, setMessage] = useState(''); 
+  const [message, setMessage] = useState('');
 
   const toggleShowPassword = () => {
     setShowPassword(!showPassword);
@@ -18,18 +17,18 @@ const CardRegisterModal = ({ isOpen, onClose }) => {
     e.preventDefault();
 
     if (password !== confirmPassword) {
-      setMessage('Passwords do not match!');
+      setMessage('As senhas não coincidem!');
       return;
     }
 
     try {
-      const response = await api.post('auth/register', {
-        name,
-        username,
-        password,
-        confirmPassword,
+      const response = await api.post('/auth/register', {
+        login: username,
+        senha: password,
+        confirmSenha: confirmPassword
       });
-      setMessage(response.data.message);
+
+      setMessage(response.data.message || 'Usuário registrado com sucesso!');
       onClose();
     } catch (error) {
       setMessage(error.response?.data?.error || 'Erro ao registrar');
@@ -44,19 +43,6 @@ const CardRegisterModal = ({ isOpen, onClose }) => {
         <div className="cardRegister">
           <form onSubmit={handleSubmit}>
             <div>
-
-              <label className="cardUserRegister" htmlFor="name">Name</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                className="inputUserRegister"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                autoComplete="off"
-              />
-
               <label className="cardUserRegister" htmlFor="username">Username</label>
               <input
                 type="text"
@@ -85,7 +71,7 @@ const CardRegisterModal = ({ isOpen, onClose }) => {
                   type="button"
                   className="eyeLoginRegister"
                   onClick={toggleShowPassword}
-                  aria-label="Show/Hide Password"
+                  aria-label="Mostrar/ocultar senha"
                 >
                   {showPassword ? '👁️' : '👁️‍🗨️'}
                 </button>
@@ -107,7 +93,7 @@ const CardRegisterModal = ({ isOpen, onClose }) => {
                   type="button"
                   className="eyeLoginRegister"
                   onClick={toggleShowPassword}
-                  aria-label="Show/Hide Confirm Password"
+                  aria-label="Mostrar/ocultar confirmação"
                 >
                   {showPassword ? '👁️' : '👁️‍🗨️'}
                 </button>

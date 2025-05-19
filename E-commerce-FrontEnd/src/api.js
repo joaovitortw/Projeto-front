@@ -5,7 +5,6 @@ const api = axios.create({
   withCredentials: true,
 });
 
-// Se quiser, adicione token automaticamente:
 api.interceptors.request.use((config) => {
   const token = localStorage.getItem('accessToken');
   if (token) {
