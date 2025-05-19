@@ -23,7 +23,7 @@ const CardRegisterModal = ({ isOpen, onClose }) => {
     }
 
     try {
-      const response = await api.post('/register', {
+      const response = await api.post('auth/register', {
         name,
         username,
         password,

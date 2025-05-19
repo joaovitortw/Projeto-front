@@ -13,19 +13,22 @@ const CardLoginModal = ({ isOpen, onClose }) => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    try {
-      const response = await api.post('/login', {
-        username,
-        password,
-      });
-      setMessage(response.data.message || 'Login successful!');
-      onClose();
-    } catch (error) {
-      setMessage(error.response?.data?.error || 'Erro ao realizar login');
-    }
-  };
+  try {
+    const response = await api.post('/auth/login', {
+      login: username,
+      senha: password
+    });
+
+    setMessage(response.data.message || 'Login realizado com sucesso!');
+    localStorage.setItem('accessToken', response.data.accessToken);
+    onClose();
+  } catch (error) {
+    setMessage(error.response?.data?.error || 'Erro ao realizar login');
+  }
+};
+
 
   if (!isOpen) return null;
 
